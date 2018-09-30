@@ -11,8 +11,8 @@ let fs = require('fs');
 let http  = require('http');
 let https = require('https');
 
-let privateKey  = fs.readFileSync('./privatekey.pem', 'utf8');
-let certificate = fs.readFileSync('./server.crt', 'utf8');
+let privateKey  = fs.readFileSync('./ssCert/privatekey.pem', 'utf8');
+let certificate = fs.readFileSync('./ssCert/server.crt', 'utf8');
 let credentials = {key: privateKey, cert: certificate};
 
 //Add middleware necessary for REST API's
@@ -29,7 +29,7 @@ app.use(function(req, res, next){
     res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
-})
+});
 
 app.use('/hello', function(req, res, next){
     res.send('Hellow World');
@@ -38,6 +38,10 @@ app.use('/hello', function(req, res, next){
 
 app.use('/fb', function(req, res, next){
    res.sendFile(path.join(__dirname + '/fb.html'));
+});
+
+app.use('/bodyDemo', function(req, res, next){
+  res.sendFile(path.join(__dirname + '/body.html'));
 });
 
 let  httpServer = http.createServer(app);
