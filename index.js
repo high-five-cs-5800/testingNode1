@@ -1,3 +1,4 @@
+
 let express = require('express');
 let mongoose = require('mongoose');
 let bodyParser = require('body-parser');
@@ -43,6 +44,12 @@ app.use('/fb', function(req, res, next){
 app.use('/bodyDemo', function(req, res, next){
   res.sendFile(path.join(__dirname + '/body.html'));
 });
+
+
+//app.post('/body', function(req, res){
+//   console.log(req.body.inputPassword2);
+//   res.redirect('/hello'); 
+//});
 
 let  httpServer = http.createServer(app);
 let httpsServer = https.createServer(credentials, app);
