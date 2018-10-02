@@ -4,6 +4,7 @@ let mongoose = require('mongoose');
 let bodyParser = require('body-parser');
 let methodOverride = require('method-override');
 let morgan = require('morgan');
+let node_csv = require('node-csv');
 let _  = require('lodash');
 let path = require('path');
 //create the applicaiton
@@ -25,6 +26,10 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 //path to morgan log and log stream
 var LogStream = fs.createWriteStream(path.join(__dirname,'morgan.log'),  {flags: 'a'})
 
+//CSV requirements
+var fs = require("fs"),
+    util = require("util"),
+    events = require("events");
 
 //CORS Support
 app.use(function(req, res, next){
