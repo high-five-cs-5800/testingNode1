@@ -3,7 +3,7 @@ let express = require('express')
 let mongoose = require('mongoose');
 let bodyParser = require('body-parser');
 let methodOverride = require('method-override');
-let morgan = require('morgan');
+//let morgan = require('morgan');
 let _  = require('lodash');
 let path = require('path');
 //create the applicaiton
@@ -22,8 +22,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(methodOverride('X-HTTP-Method-Override'));
 
-//path to morgan log and log stream
-var LogStream = fs.createWriteStream(path.join(__dirname,'morgan.log'),  {flags: 'a'})
+
 
 
 //CORS Support
@@ -47,16 +46,7 @@ app.use('/bodyDemo', function(req, res, next){
   res.sendFile(path.join(__dirname + '/body.html'));
 });
 
-app.use(morgan('combined',{stream: LogStream}))
-app.get('/MorganTest', function(req,res){
-  res.send('Testing Morgan');
-})
-
-
-//app.post('/body', function(req, res){
-//   console.log(req.body.inputPassword2);
-//   res.redirect('/hello');
-//});
+//app.use('/MorganDemo',
 
 let  httpServer = http.createServer(app);
 let httpsServer = https.createServer(credentials, app);
